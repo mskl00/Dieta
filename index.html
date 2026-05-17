@@ -479,10 +479,22 @@
     display:grid;place-items:center;font-size:16px;
   }
   .shop ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
-  .shop li{font-size:13.5px;color:var(--ink2);padding-left:16px;position:relative;line-height:1.5;}
+  .shop li{font-size:13.5px;color:var(--ink2);padding-left:16px;position:relative;line-height:1.5;display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
   .shop li::before{
-    content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:1px;
+    content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:1px;
     background:var(--forest-300);transform:rotate(45deg);
+  }
+  .shop li .name{flex:1;min-width:0;}
+  .shop li .qty{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--clay-700);background:var(--clay-50);
+    padding:2px 8px;border-radius:99px;
+    border:1px solid var(--clay-100);white-space:nowrap;
+    letter-spacing:.3px;
+  }
+  .shop .note{
+    font-size:11.5px;color:var(--ink3);font-style:italic;
+    margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);line-height:1.5;
   }
 
   /* ====== Footer ====== */
@@ -979,11 +991,65 @@
     </div>
 
     <div id="dayContainer"></div>
+
+    <!-- Meal prep tips -->
+    <div style="margin-top:36px;">
+      <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:30px;color:var(--forest-900);letter-spacing:-.01em;margin-bottom:8px;">Ottimizzare la <em style="color:var(--clay-500);font-style:italic;">preparazione</em>.</h3>
+      <p class="section-intro" style="margin-bottom:22px;">Cucinare 2–3 sessioni di batch a settimana copre 7 giorni di pasti senza ripetere le ricette. Ogni alimento ha una propria finestra di conservazione: rispettarla è la differenza tra meal prep efficace e spreco.</p>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>🗓️ Dom · sessione 1 (60 min)</h3>
+          <p style="font-size:13.5px;"><strong>Cereali in batch:</strong> 400 g riso basmati integrale + 300 g farro + 250 g quinoa lessati a parte. Pronti per Lun, Mer, Ven, Sab. Riporzionare in contenitori da 80–90 g a crudo.</p>
+        </div>
+        <div class="card">
+          <h3>🗓️ Dom · sessione 2 (40 min)</h3>
+          <p style="font-size:13.5px;"><strong>Proteine arrosto:</strong> 500 g petto di pollo al forno (200°C, 22 min) + 400 g tacchino + 12 uova sode. Pronti per pranzi e spuntini di metà settimana.</p>
+        </div>
+        <div class="card">
+          <h3>🗓️ Mer · refresh (30 min)</h3>
+          <p style="font-size:13.5px;"><strong>Verdure &amp; legumi:</strong> 600 g mix di verdure al forno (zucchine, peperoni, melanzane) + 300 g legumi lessati. Cuocere pesce e carne fresca giornalmente per qualità ω-3.</p>
+        </div>
+        <div class="card">
+          <h3>🧊 Cosa congelare</h3>
+          <p style="font-size:13.5px;"><strong>Sì:</strong> legumi lessati (porzioni 120 g), riso/farro/orzo lessati, brodo di ossa, sughi di pomodoro, burger di salmone/legumi cotti, pane integrale a fette. <strong>No:</strong> uova sode, insalate, avocado, yogurt.</p>
+        </div>
+        <div class="card">
+          <h3>🥡 In frigo · finestre sicure</h3>
+          <p style="font-size:13.5px;">
+            <strong>Cereali cotti:</strong> 4–5 gg · <strong>Legumi cotti:</strong> 3–4 gg · <strong>Pollo cotto:</strong> 3 gg · <strong>Carne rossa cotta:</strong> 3 gg · <strong>Pesce cotto:</strong> 1–2 gg · <strong>Verdure cotte:</strong> 3–4 gg · <strong>Uova sode in guscio:</strong> 7 gg.
+          </p>
+        </div>
+        <div class="card">
+          <h3>❄️ Congelatore · finestre</h3>
+          <p style="font-size:13.5px;">
+            <strong>Pesce crudo:</strong> 2–3 mesi · <strong>Pollo crudo:</strong> 9 mesi · <strong>Macinato:</strong> 3–4 mesi · <strong>Verdure sbianch.:</strong> 8–12 mesi · <strong>Pane:</strong> 3 mesi · <strong>Brodo/sughi:</strong> 4–6 mesi · <strong>Legumi cotti:</strong> 3 mesi.
+          </p>
+        </div>
+        <div class="card">
+          <h3>♻️ Linee guida sicurezza</h3>
+          <p style="font-size:13.5px;">Raffreddare a temperatura ambiente max 2 h prima di refrigerare. Riscaldare a ≥ 75°C nel cuore. Non ricongelare un alimento già scongelato (eccetto se cotto). Conservare in vetro o PP (codice 5) per ridurre migrazione di sostanze.</p>
+        </div>
+        <div class="card">
+          <h3>🥦 Verdure: l'eccezione delle crucifere</h3>
+          <p style="font-size:13.5px;">Broccoli, cavolfiore, cavolo nero: cuocerli al vapore 5–7 min appena prima di mangiarli. La cottura prolungata o il riscaldamento ripetuto distrugge i glucosinolati attivi (sulforafano).</p>
+        </div>
+        <div class="card">
+          <h3>🐟 Pesce: la regola del giorno</h3>
+          <p style="font-size:13.5px;">Pesce fresco: cuocere e consumare lo stesso giorno per preservare il profilo ω-3 (l'ossidazione di EPA/DHA aumenta rapidamente). In alternativa congelare crudo e scongelare lentamente in frigo.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:22px;padding:18px 20px;background:var(--grad-paper);border:1px solid var(--line);border-radius:var(--radius);">
+        <p style="font-size:14px;color:var(--ink2);line-height:1.65;"><strong style="color:var(--forest-900);">Esempio pratico ·</strong> Domenica cuoci 400 g di riso basmati integrale a crudo (= ~1.000 g cotti). Lo distribuisci in 4 porzioni da ~250 g cotti che usi lun · mer · ven · sab. Conservazione in vetro chiuso, 4–5 giorni in frigo. Stessa logica per farro (3 porzioni) e quinoa (2 porzioni). Tempo totale di cottura simultanea su 3 fornelli: ~30 min.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- ============== PASTI (TUTTI, FILTRABILI) ============== -->
-<section id="pasti" class="reveal">
+<section id="pasti">
   <div class="container">
     <div class="section-kicker">06 — Pasti</div>
     <h2>Tutti i <em>pasti</em>, filtrabili in un colpo d'occhio.</h2>
@@ -1013,139 +1079,141 @@
   <div class="container">
     <div class="section-kicker">07 — Spesa</div>
     <h2>La <em>lista</em> della spesa intelligente.</h2>
-    <p class="section-intro">Comprare bene è il 70% del lavoro. Tutto lactose-free, focalizzato su densità nutrizionale, indice glicemico moderato, qualità ittica e carni bianche/rosse magre. Privilegiare bio per uova, pollo, latticini stagionati; pesce pescato (no allevamento intensivo); EVO DOP estratto a freddo.</p>
+    <p class="section-intro">Quantità indicative <strong>settimanali per 1 persona</strong>, calibrate sul piano alimentare 2.250 kcal medie/die e arrotondate alle confezioni di mercato. Tutto lactose-free, focalizzato su densità nutrizionale, IG moderato, qualità ittica e carni magre. Privilegiare bio per uova, pollo, latticini stagionati; pesce pescato (no allevamento intensivo); EVO DOP estratto a freddo.</p>
 
     <div class="shop-grid">
       <div class="shop">
         <h4><span class="ico">🥩</span> Proteine animali</h4>
         <ul>
-          <li>Petto di pollo bio</li>
-          <li>Petto di tacchino</li>
-          <li>Fettine di vitello / scaloppine</li>
-          <li>Macinato di tacchino / manzo magro 5%</li>
-          <li>Bresaola della Valtellina IGP</li>
-          <li>Prosciutto crudo di Parma 24 mesi (sgrassato)</li>
-          <li>Uova bio cat. 0</li>
-          <li>Salmone selvaggio, sgombro, sardine, alici</li>
-          <li>Tonno al naturale (anche vasetti vetro)</li>
-          <li>Branzino, orata, trota salmonata</li>
-          <li>Gamberi, polpo, calamari</li>
+          <li><span class="name">Petto di pollo bio</span><span class="qty">600 g</span></li>
+          <li><span class="name">Petto di tacchino</span><span class="qty">500 g</span></li>
+          <li><span class="name">Fettine di vitello / scaloppine</span><span class="qty">300 g</span></li>
+          <li><span class="name">Macinato di tacchino / manzo magro 5%</span><span class="qty">400 g</span></li>
+          <li><span class="name">Bresaola della Valtellina IGP</span><span class="qty">200 g</span></li>
+          <li><span class="name">Prosciutto crudo di Parma 24 mesi (sgrassato)</span><span class="qty">150 g</span></li>
+          <li><span class="name">Uova bio cat. 0</span><span class="qty">12 pz</span></li>
+          <li><span class="name">Salmone selvaggio / trota salmonata</span><span class="qty">500 g</span></li>
+          <li><span class="name">Sgombro / sardine / alici fresche</span><span class="qty">400 g</span></li>
+          <li><span class="name">Tonno al naturale (vasetti vetro)</span><span class="qty">3 lattine</span></li>
+          <li><span class="name">Branzino / orata / sogliola</span><span class="qty">400 g</span></li>
+          <li><span class="name">Gamberi / polpo / calamari</span><span class="qty">300 g</span></li>
         </ul>
       </div>
 
       <div class="shop">
         <h4><span class="ico">🌱</span> Proteine vegetali</h4>
         <ul>
-          <li>Lenticchie (rosse, verdi, di Castelluccio)</li>
-          <li>Ceci secchi e in vetro</li>
-          <li>Fagioli cannellini, borlotti, neri</li>
-          <li>Edamame surgelati (lontano da Eutirox)</li>
-          <li>Tofu firm bio (uso moderato)</li>
-          <li>Hummus 100% naturale (no conservanti)</li>
-          <li>Tempeh (alternativa fermentata)</li>
+          <li><span class="name">Lenticchie secche (rosse, verdi)</span><span class="qty">500 g</span></li>
+          <li><span class="name">Ceci secchi o in vetro</span><span class="qty">500 g</span></li>
+          <li><span class="name">Fagioli cannellini / borlotti / neri</span><span class="qty">2 barattoli</span></li>
+          <li><span class="name">Edamame surgelati (≥ 4 h da Eutirox)</span><span class="qty">250 g</span></li>
+          <li><span class="name">Tofu firm bio (uso moderato)</span><span class="qty">200 g</span></li>
+          <li><span class="name">Hummus 100% naturale</span><span class="qty">200 g</span></li>
         </ul>
+        <p class="note">Cuocere 500 g di legumi secchi a inizio settimana e congelare in porzioni da 120 g per ricette flash.</p>
       </div>
 
       <div class="shop">
         <h4><span class="ico">🌾</span> Cereali &amp; pane</h4>
         <ul>
-          <li>Avena integrale (fiocchi grandi)</li>
-          <li>Riso basmati integrale</li>
-          <li>Riso venere, riso rosso</li>
-          <li>Farro decorticato / perlato</li>
-          <li>Orzo decorticato</li>
-          <li>Quinoa tricolore</li>
-          <li>Grano saraceno</li>
-          <li>Pasta di grano duro integrale</li>
-          <li>Pane di segale, pane integrale di farro</li>
-          <li>Couscous integrale</li>
-          <li>Gallette di riso/mais integrali</li>
+          <li><span class="name">Fiocchi d'avena integrale</span><span class="qty">500 g</span></li>
+          <li><span class="name">Riso basmati integrale</span><span class="qty">500 g</span></li>
+          <li><span class="name">Riso venere / rosso</span><span class="qty">250 g</span></li>
+          <li><span class="name">Farro decorticato</span><span class="qty">500 g</span></li>
+          <li><span class="name">Quinoa tricolore</span><span class="qty">250 g</span></li>
+          <li><span class="name">Grano saraceno / orzo</span><span class="qty">250 g</span></li>
+          <li><span class="name">Pasta di grano duro integrale</span><span class="qty">500 g</span></li>
+          <li><span class="name">Pane di segale / farro integrale</span><span class="qty">500 g</span></li>
+          <li><span class="name">Couscous integrale</span><span class="qty">250 g</span></li>
+          <li><span class="name">Gallette di riso/mais integrali</span><span class="qty">1 conf.</span></li>
         </ul>
       </div>
 
       <div class="shop">
-        <h4><span class="ico">🥬</span> Verdure (sempre)</h4>
+        <h4><span class="ico">🥬</span> Verdure (sempre fresche)</h4>
         <ul>
-          <li>Spinaci baby, rucola, valeriana</li>
-          <li>Broccoli, cavolfiore, cavolo nero (cotti)</li>
-          <li>Zucchine, melanzane, peperoni</li>
-          <li>Cicoria, scarola, bietole, cime di rapa</li>
-          <li>Carote, finocchi, asparagi</li>
-          <li>Pomodorini, cetrioli</li>
-          <li>Funghi champignon, porcini, shiitake</li>
-          <li>Patate dolci, patate, scorzonera</li>
-          <li>Cavolini di Bruxelles (cotti)</li>
+          <li><span class="name">Spinaci baby / rucola / valeriana</span><span class="qty">400 g</span></li>
+          <li><span class="name">Broccoli / cavolfiore</span><span class="qty">600 g</span></li>
+          <li><span class="name">Cavolo nero / cime di rapa</span><span class="qty">400 g</span></li>
+          <li><span class="name">Zucchine</span><span class="qty">800 g</span></li>
+          <li><span class="name">Melanzane / peperoni</span><span class="qty">600 g</span></li>
+          <li><span class="name">Cicoria / scarola / bietole</span><span class="qty">500 g</span></li>
+          <li><span class="name">Carote / finocchi / asparagi</span><span class="qty">700 g</span></li>
+          <li><span class="name">Pomodorini ciliegino</span><span class="qty">500 g</span></li>
+          <li><span class="name">Cetrioli / sedano</span><span class="qty">400 g</span></li>
+          <li><span class="name">Funghi champignon</span><span class="qty">300 g</span></li>
+          <li><span class="name">Patate dolci / patate</span><span class="qty">1,2 kg</span></li>
         </ul>
       </div>
 
       <div class="shop">
         <h4><span class="ico">🍎</span> Frutta</h4>
         <ul>
-          <li>Mele, pere</li>
-          <li>Mirtilli, lamponi, fragole, more</li>
-          <li>Kiwi gold, agrumi (arance, pompelmo)</li>
-          <li>Banane</li>
-          <li>Avocado</li>
-          <li>Frutti tropicali (papaya, mango, ananas)</li>
-          <li>Fichi freschi/secchi</li>
-          <li>Datteri Medjool (refeed/pre-WO)</li>
+          <li><span class="name">Mele / pere</span><span class="qty">7 pz</span></li>
+          <li><span class="name">Mirtilli / lamponi / fragole</span><span class="qty">600 g</span></li>
+          <li><span class="name">Kiwi gold</span><span class="qty">8 pz</span></li>
+          <li><span class="name">Agrumi (arance, pompelmo, limoni)</span><span class="qty">1 kg</span></li>
+          <li><span class="name">Banane</span><span class="qty">6 pz</span></li>
+          <li><span class="name">Avocado</span><span class="qty">4 pz</span></li>
+          <li><span class="name">Frutta tropicale (mango/papaya/ananas)</span><span class="qty">500 g</span></li>
+          <li><span class="name">Fichi freschi/secchi</span><span class="qty">200 g</span></li>
+          <li><span class="name">Datteri Medjool</span><span class="qty">200 g</span></li>
         </ul>
       </div>
 
       <div class="shop">
         <h4><span class="ico">🥥</span> Latticini delattosati &amp; alternative</h4>
         <ul>
-          <li>Skyr 0% lactose-free</li>
-          <li>Yogurt greco 2% lactose-free</li>
-          <li>Ricotta vaccina lactose-free</li>
-          <li>Parmigiano Reggiano 30–36 mesi (lattosio &lt; 0,01%)</li>
-          <li>Grana Padano 24+ mesi</li>
-          <li>Pecorino stagionato</li>
-          <li>Bevanda di mandorla senza zucchero</li>
-          <li>Bevanda di cocco light</li>
-          <li>Bevanda di avena (lontano da Eutirox per fibra)</li>
+          <li><span class="name">Skyr 0% lactose-free</span><span class="qty">1 kg</span></li>
+          <li><span class="name">Yogurt greco 2% lactose-free</span><span class="qty">800 g</span></li>
+          <li><span class="name">Ricotta vaccina lactose-free</span><span class="qty">500 g</span></li>
+          <li><span class="name">Parmigiano Reggiano 30–36 mesi</span><span class="qty">200 g</span></li>
+          <li><span class="name">Grana Padano 24+ mesi / Pecorino stag.</span><span class="qty">150 g</span></li>
+          <li><span class="name">Bevanda di mandorla senza zucchero</span><span class="qty">2 L</span></li>
+          <li><span class="name">Bevanda di cocco light</span><span class="qty">1 L</span></li>
         </ul>
       </div>
 
       <div class="shop">
         <h4><span class="ico">🥜</span> Frutta secca, semi &amp; grassi</h4>
         <ul>
-          <li>Noci del Brasile (2/die = selenio)</li>
-          <li>Mandorle, noci, nocciole, anacardi</li>
-          <li>Semi di chia, lino macinato, canapa</li>
-          <li>Semi di zucca (zinco), girasole, sesamo</li>
-          <li>Burro di mandorle / arachidi 100%</li>
-          <li>Olive taggiasche, kalamata</li>
-          <li>Olio EVO DOP estratto a freddo</li>
-          <li>Olio di lino crudo (insalate)</li>
-          <li>Cioccolato fondente ≥ 85%</li>
+          <li><span class="name">Noci del Brasile (2/die per selenio)</span><span class="qty">100 g</span></li>
+          <li><span class="name">Mandorle naturali</span><span class="qty">250 g</span></li>
+          <li><span class="name">Noci / nocciole</span><span class="qty">200 g</span></li>
+          <li><span class="name">Semi di chia / lino macinato / canapa</span><span class="qty">200 g tot</span></li>
+          <li><span class="name">Semi di zucca (zinco) / girasole / sesamo</span><span class="qty">200 g tot</span></li>
+          <li><span class="name">Burro di mandorle / arachidi 100%</span><span class="qty">1 vasetto</span></li>
+          <li><span class="name">Olive taggiasche / kalamata</span><span class="qty">200 g</span></li>
+          <li><span class="name">Olio EVO DOP estratto a freddo</span><span class="qty">~250 ml</span></li>
+          <li><span class="name">Olio di lino crudo (insalate)</span><span class="qty">~50 ml</span></li>
+          <li><span class="name">Cioccolato fondente ≥ 85%</span><span class="qty">100 g</span></li>
         </ul>
       </div>
 
       <div class="shop">
         <h4><span class="ico">🧂</span> Spezie &amp; aromi</h4>
         <ul>
-          <li>Curcuma + pepe nero (curcumina)</li>
-          <li>Zenzero fresco</li>
-          <li>Cannella di Ceylon</li>
-          <li>Origano, rosmarino, timo, basilico</li>
-          <li>Aglio, cipolla rossa</li>
-          <li>Peperoncino</li>
-          <li>Aceto di mele, aceto balsamico</li>
-          <li>Tamari low-sodium (uso parsimonioso)</li>
-          <li>Sale rosa dell'Himalaya / iodato</li>
+          <li><span class="name">Curcuma + pepe nero</span><span class="qty">scorta</span></li>
+          <li><span class="name">Zenzero fresco</span><span class="qty">1 radice</span></li>
+          <li><span class="name">Cannella di Ceylon</span><span class="qty">scorta</span></li>
+          <li><span class="name">Origano · rosmarino · timo · basilico</span><span class="qty">scorta</span></li>
+          <li><span class="name">Aglio · cipolla rossa</span><span class="qty">scorta</span></li>
+          <li><span class="name">Peperoncino</span><span class="qty">scorta</span></li>
+          <li><span class="name">Aceto di mele / balsamico</span><span class="qty">1 bottiglia</span></li>
+          <li><span class="name">Tamari low-sodium</span><span class="qty">1 bottiglia</span></li>
+          <li><span class="name">Sale rosa / iodato</span><span class="qty">scorta</span></li>
         </ul>
       </div>
 
       <div class="shop">
-        <h4><span class="ico">🍵</span> Bevande</h4>
+        <h4><span class="ico">🍵</span> Bevande &amp; supplementi</h4>
         <ul>
-          <li>Acqua naturale 2,5 L/die</li>
-          <li>Tè verde (≥ 60 min da Eutirox)</li>
-          <li>Tisane: camomilla, tiglio, zenzero-limone</li>
-          <li>Caffè ≤ 3/die (≥ 60 min da Eutirox)</li>
-          <li>Whey isolata lactose-free</li>
-          <li>Caseine micellari lactose-free (bedtime)</li>
+          <li><span class="name">Acqua naturale (no Ca elevato)</span><span class="qty">17,5 L</span></li>
+          <li><span class="name">Tè verde (≥ 60 min da Eutirox)</span><span class="qty">1 conf.</span></li>
+          <li><span class="name">Tisane camomilla / tiglio / zenzero</span><span class="qty">1 conf.</span></li>
+          <li><span class="name">Caffè in grani / moka</span><span class="qty">250 g</span></li>
+          <li><span class="name">Whey isolata lactose-free</span><span class="qty">~210 g</span></li>
+          <li><span class="name">Caseine micellari lactose-free</span><span class="qty">~150 g</span></li>
         </ul>
       </div>
     </div>
@@ -2123,7 +2191,7 @@ document.getElementById('dayFab').addEventListener('click',()=>{
   document.getElementById('piano').scrollIntoView({behavior:'smooth',block:'start'});
 });
 
-/* ===== Reveal on scroll ===== */
+/* ===== Reveal on scroll (con safety fallback) ===== */
 if('IntersectionObserver' in window){
   const io=new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
@@ -2131,7 +2199,11 @@ if('IntersectionObserver' in window){
     });
   },{rootMargin:'0px 0px -80px 0px',threshold:0.05});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
 }
+// Safety: dopo 1.5s rendi visibile qualsiasi .reveal rimasto fuori (es. immediatamente in viewport)
+setTimeout(()=>{document.querySelectorAll('.reveal:not(.in)').forEach(el=>el.classList.add('in'));},1500);
 
 /* ===== Pasti — sezione filtrabile ===== */
 const categoryMeta = {
