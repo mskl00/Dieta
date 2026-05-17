@@ -566,6 +566,95 @@
   .quote::before{content:"“";font-size:60px;line-height:0.4;display:block;margin-bottom:14px;color:var(--clay-300);}
   .quote .by{display:block;margin-top:18px;font-family:'JetBrains Mono',monospace;font-style:normal;font-size:11px;letter-spacing:2px;opacity:.7;text-transform:uppercase;}
 
+  /* ====== Pasti — sezione filtrabile ====== */
+  .filter-bar{
+    display:flex;flex-direction:column;gap:14px;
+    background:var(--grad-paper);border:1px solid var(--line);
+    padding:18px;border-radius:var(--radius);margin-bottom:22px;
+    box-shadow:var(--shadow-xs);
+  }
+  .filter-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .filter-label{
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:2px;text-transform:uppercase;color:var(--ink3);
+    min-width:64px;
+  }
+  .filter-chip{
+    padding:8px 14px;border-radius:99px;
+    border:1px solid var(--line);background:var(--paper);
+    color:var(--ink2);font-weight:500;font-size:13px;cursor:pointer;
+    transition:all .15s var(--ease);font-family:'Inter',sans-serif;
+    display:inline-flex;align-items:center;gap:7px;
+  }
+  .filter-chip:hover{border-color:var(--forest-300);color:var(--forest-700);}
+  .filter-chip.active{background:var(--forest-900);color:var(--sand-100);border-color:var(--forest-900);}
+  .filter-chip .count{
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    background:rgba(0,0,0,.06);padding:2px 7px;border-radius:99px;
+    color:var(--ink3);
+  }
+  .filter-chip.active .count{background:rgba(255,255,255,.18);color:var(--sand-100);}
+  .filter-search{
+    flex:1;min-width:180px;
+    border:1px solid var(--line);background:var(--paper);
+    padding:10px 14px;border-radius:99px;
+    font-family:'Inter',sans-serif;font-size:14px;color:var(--ink);
+    outline:none;transition:all .15s var(--ease);
+  }
+  .filter-search:focus{border-color:var(--forest-300);box-shadow:0 0 0 4px var(--forest-50);}
+  .filter-result{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:1.5px;color:var(--ink2);
+  }
+  .meals-grid{display:grid;gap:14px;grid-template-columns:1fr;}
+  @media (min-width:680px){.meals-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (min-width:1024px){.meals-grid{grid-template-columns:repeat(3,1fr);}}
+  .meal-card{
+    background:var(--paper);border:1px solid var(--line);
+    border-radius:var(--radius);padding:18px;
+    display:flex;flex-direction:column;
+    box-shadow:var(--shadow-xs);
+    transition:all .25s var(--ease);
+    animation:fade .35s var(--ease);
+  }
+  .meal-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-color:var(--forest-100);}
+  .meal-card .head{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:8px;margin-bottom:10px;
+  }
+  .meal-card .slot{
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:1.5px;text-transform:uppercase;color:var(--forest-700);
+    background:var(--forest-50);border:1px solid var(--forest-100);
+    padding:3px 10px;border-radius:99px;
+  }
+  .meal-card .icn{font-size:18px;}
+  .meal-card h4{
+    font-weight:600;font-size:15.5px;color:var(--ink);
+    margin-bottom:8px;line-height:1.35;letter-spacing:-.01em;
+    min-height:42px;
+  }
+  .meal-card .tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;min-height:22px;}
+  .meal-card .ing{
+    font-size:13px;color:var(--ink2);line-height:1.5;
+    margin-bottom:10px;flex:1;
+  }
+  .meal-card .ing b{color:var(--ink);font-weight:600;}
+  .meal-card .macros{
+    display:flex;flex-wrap:wrap;gap:5px;
+    padding-top:10px;border-top:1px dashed var(--line);
+  }
+  .meal-card .micro-note{
+    background:var(--forest-50);border-left:3px solid var(--forest-500);
+    padding:8px 10px;border-radius:var(--radius-sm);
+    font-size:11.5px;color:var(--forest-700);line-height:1.45;
+    margin-top:10px;
+  }
+  .empty-state{
+    grid-column:1/-1;text-align:center;padding:60px 20px;
+    color:var(--ink3);font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;
+  }
+
   /* utility */
   .center{text-align:center;}
 </style>
@@ -592,6 +681,7 @@
       <a href="#protocollo">Protocollo</a>
       <a href="#pattern">Pattern</a>
       <a href="#piano">Piano</a>
+      <a href="#pasti">Pasti</a>
       <a href="#spesa">Spesa</a>
       <a href="#integrazione">Integrazione</a>
       <a href="#evidenze">Evidenze</a>
@@ -608,9 +698,10 @@
     <a href="#protocollo"><span>Protocollo Hashimoto</span><span class="num">03</span></a>
     <a href="#pattern"><span>Pattern alimentari</span><span class="num">04</span></a>
     <a href="#piano"><span>Piano 7 giorni · 90+ ricette</span><span class="num">05</span></a>
-    <a href="#spesa"><span>Spesa intelligente</span><span class="num">06</span></a>
-    <a href="#integrazione"><span>Integrazione &amp; training</span><span class="num">07</span></a>
-    <a href="#evidenze"><span>Evidenze scientifiche</span><span class="num">08</span></a>
+    <a href="#pasti"><span>Tutti i pasti · filtri</span><span class="num">06</span></a>
+    <a href="#spesa"><span>Spesa intelligente</span><span class="num">07</span></a>
+    <a href="#integrazione"><span>Integrazione &amp; training</span><span class="num">08</span></a>
+    <a href="#evidenze"><span>Evidenze scientifiche</span><span class="num">09</span></a>
   </div>
 </div>
 
@@ -891,10 +982,36 @@
   </div>
 </section>
 
+<!-- ============== PASTI (TUTTI, FILTRABILI) ============== -->
+<section id="pasti" class="reveal">
+  <div class="container">
+    <div class="section-kicker">06 — Pasti</div>
+    <h2>Tutti i <em>pasti</em>, filtrabili in un colpo d'occhio.</h2>
+    <p class="section-intro">Cerchi un'idea pronta? Qui trovi tutte le ricette del protocollo in un'unica vista. Filtra per categoria (colazione, pranzo, cena, spuntino) o per attributo (veloce, vegetariano, omega-3, ad alto contenuto proteico). Cerca per ingrediente nella barra di ricerca.</p>
+
+    <div class="filter-bar">
+      <div class="filter-row" id="filterCategory">
+        <span class="filter-label">Categoria</span>
+        <!-- chips inserted by JS -->
+      </div>
+      <div class="filter-row" id="filterTag">
+        <span class="filter-label">Attributo</span>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Cerca</span>
+        <input type="search" class="filter-search" id="mealSearch" placeholder="es. salmone, quinoa, avocado…" aria-label="Cerca un ingrediente">
+        <span class="filter-result" id="filterResult"></span>
+      </div>
+    </div>
+
+    <div class="meals-grid" id="mealsGrid"></div>
+  </div>
+</section>
+
 <!-- ============== SPESA INTELLIGENTE ============== -->
 <section id="spesa" class="reveal">
   <div class="container">
-    <div class="section-kicker">06 — Spesa</div>
+    <div class="section-kicker">07 — Spesa</div>
     <h2>La <em>lista</em> della spesa intelligente.</h2>
     <p class="section-intro">Comprare bene è il 70% del lavoro. Tutto lactose-free, focalizzato su densità nutrizionale, indice glicemico moderato, qualità ittica e carni bianche/rosse magre. Privilegiare bio per uova, pollo, latticini stagionati; pesce pescato (no allevamento intensivo); EVO DOP estratto a freddo.</p>
 
@@ -1038,7 +1155,7 @@
 <!-- ============== INTEGRAZIONE / ALLENAMENTO ============== -->
 <section id="integrazione" class="reveal">
   <div class="container">
-    <div class="section-kicker">07 — Integrazione &amp; training</div>
+    <div class="section-kicker">08 — Integrazione &amp; training</div>
     <h2>Pochi integratori, <em>tutti</em> con un motivo.</h2>
     <p class="section-intro">Niente stack da bodybuilder. Solo molecole con evidenza solida nel contesto tiroideo e ricompositivo, e tutte a distanza di sicurezza dalla levotiroxina.</p>
 
@@ -1096,7 +1213,7 @@
 <!-- ============== EVIDENZE SCIENTIFICHE (DEDICATA) ============== -->
 <section id="evidenze" class="reveal">
   <div class="container">
-    <div class="section-kicker">08 — Evidenze</div>
+    <div class="section-kicker">09 — Evidenze</div>
     <h2>La <em>letteratura</em> alla base del protocollo.</h2>
     <p class="section-intro">28 studi peer-reviewed selezionati come fonti primarie del protocollo: meta-analisi, RCT, position stand di società scientifiche internazionali. Cliccando ogni citazione si apre il riferimento PubMed o DOI ufficiale. Ultima revisione: 2026.</p>
 
@@ -2016,11 +2133,136 @@ if('IntersectionObserver' in window){
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 }
 
+/* ===== Pasti — sezione filtrabile ===== */
+const categoryMeta = {
+  colazione: { label:'Colazione', icon:'☕' },
+  spuntino1: { label:'Spuntino',  icon:'🍎' },
+  pranzo:    { label:'Pranzo',    icon:'🍽️' },
+  pre:       { label:'Merenda · Pre-WO', icon:'⚡' },
+  cena:      { label:'Cena',      icon:'🌙' },
+  post:      { label:'Bedtime',   icon:'🌿' },
+};
+const tagMeta = {
+  veg:    { label:'Vegetariano' },
+  quick:  { label:'Veloce' },
+  omega3: { label:'Omega-3' },
+  hiprot: { label:'Hi-protein' },
+};
+
+const allMeals = [];
+Object.keys(options).forEach(slotKey=>{
+  options[slotKey].forEach(opt=>{
+    allMeals.push({
+      slot: slotKey,
+      title: opt.title,
+      list: opt.list,
+      tags: opt.tags || [],
+      macros: opt.macros,
+      note: opt.note || ''
+    });
+  });
+});
+
+const filterState = { category:'all', tag:'all', search:'' };
+
+function countByCategory(){
+  const c = { all: allMeals.length };
+  Object.keys(categoryMeta).forEach(k=>{c[k] = allMeals.filter(m=>m.slot===k).length;});
+  return c;
+}
+function countByTag(){
+  const c = { all: allMeals.length };
+  Object.keys(tagMeta).forEach(k=>{c[k] = allMeals.filter(m=>m.tags.includes(k)).length;});
+  return c;
+}
+
+function renderFilterBar(){
+  const catCounts = countByCategory();
+  const tagCounts = countByTag();
+  const catRow = document.getElementById('filterCategory');
+  const tagRow = document.getElementById('filterTag');
+
+  catRow.innerHTML = '<span class="filter-label">Categoria</span>' +
+    `<button class="filter-chip ${filterState.category==='all'?'active':''}" data-cat="all">Tutti <span class="count">${catCounts.all}</span></button>` +
+    Object.keys(categoryMeta).map(k=>
+      `<button class="filter-chip ${filterState.category===k?'active':''}" data-cat="${k}">${categoryMeta[k].icon} ${categoryMeta[k].label} <span class="count">${catCounts[k]}</span></button>`
+    ).join('');
+
+  tagRow.innerHTML = '<span class="filter-label">Attributo</span>' +
+    `<button class="filter-chip ${filterState.tag==='all'?'active':''}" data-tag="all">Tutti</button>` +
+    Object.keys(tagMeta).map(k=>
+      `<button class="filter-chip ${filterState.tag===k?'active':''}" data-tag="${k}">${tagMeta[k].label} <span class="count">${tagCounts[k]}</span></button>`
+    ).join('');
+
+  catRow.querySelectorAll('.filter-chip').forEach(b=>{
+    b.addEventListener('click',()=>{filterState.category=b.dataset.cat;renderFilterBar();renderMealsGrid();});
+  });
+  tagRow.querySelectorAll('.filter-chip').forEach(b=>{
+    b.addEventListener('click',()=>{filterState.tag=b.dataset.tag;renderFilterBar();renderMealsGrid();});
+  });
+}
+
+function stripHtml(s){return s.replace(/<[^>]*>/g,'');}
+
+function renderMealsGrid(){
+  const grid = document.getElementById('mealsGrid');
+  const q = filterState.search.trim().toLowerCase();
+  const filtered = allMeals.filter(m=>{
+    if(filterState.category!=='all' && m.slot!==filterState.category) return false;
+    if(filterState.tag!=='all' && !m.tags.includes(filterState.tag)) return false;
+    if(q){
+      const hay = (m.title + ' ' + m.list.map(stripHtml).join(' ')).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  document.getElementById('filterResult').textContent =
+    filtered.length === allMeals.length
+      ? `${filtered.length} ricette`
+      : `${filtered.length} / ${allMeals.length} ricette`;
+
+  if(filtered.length===0){
+    grid.innerHTML = '<div class="empty-state">Nessuna ricetta corrisponde ai filtri.</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(m=>{
+    const meta = categoryMeta[m.slot];
+    const tags = m.tags.map(t=>`<span class="opt-tag ${t}">${t}</span>`).join('');
+    const ingShort = m.list.slice(0,3).map(stripHtml).join(' · ') + (m.list.length>3?` <b>+${m.list.length-3}</b>`:'');
+    return `
+      <article class="meal-card">
+        <div class="head">
+          <span class="slot">${meta.label}</span>
+          <span class="icn">${meta.icon}</span>
+        </div>
+        <h4>${m.title}</h4>
+        <div class="tags">${tags}</div>
+        <div class="ing">${ingShort}</div>
+        ${m.note?`<div class="micro-note">${m.note}</div>`:''}
+        <div class="macros">
+          <span class="chip kcal">${m.macros.kcal} kcal</span>
+          <span class="chip">P ${m.macros.p}</span>
+          <span class="chip">C ${m.macros.c}</span>
+          <span class="chip">G ${m.macros.f}</span>
+        </div>
+      </article>`;
+  }).join('');
+}
+
+document.getElementById('mealSearch').addEventListener('input',(e)=>{
+  filterState.search = e.target.value;
+  renderMealsGrid();
+});
+
 /* ===== Init ===== */
 renderDayTabs();
 renderDay();
 updateFab();
 updateInfo();
+renderFilterBar();
+renderMealsGrid();
 </script>
 </body>
 </html>
