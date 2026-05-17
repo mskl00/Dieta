@@ -666,6 +666,138 @@
     grid-column:1/-1;text-align:center;padding:60px 20px;
     color:var(--ink3);font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;
   }
+  .meal-card{cursor:pointer;}
+  .meal-card .cta-open{
+    display:inline-flex;align-items:center;gap:5px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    color:var(--clay-700);background:var(--clay-50);border:1px solid var(--clay-100);
+    padding:4px 10px;border-radius:99px;letter-spacing:1px;text-transform:uppercase;
+    margin-top:10px;align-self:flex-start;
+  }
+
+  /* ====== Recipe modal ====== */
+  .recipe-modal{
+    position:fixed;inset:0;z-index:80;
+    background:rgba(22,28,22,.55);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    opacity:0;pointer-events:none;transition:opacity .25s var(--ease);
+    display:flex;align-items:flex-end;justify-content:center;
+    padding:0;
+  }
+  @media (min-width:768px){
+    .recipe-modal{align-items:center;padding:24px;}
+  }
+  .recipe-modal.open{opacity:1;pointer-events:auto;}
+  .recipe-sheet{
+    background:var(--paper);
+    width:100%;max-width:680px;max-height:92vh;
+    border-radius:24px 24px 0 0;
+    overflow:hidden;display:flex;flex-direction:column;
+    transform:translateY(40px);transition:transform .35s var(--ease);
+    box-shadow:var(--shadow-xl);
+    position:relative;
+  }
+  @media (min-width:768px){.recipe-sheet{border-radius:24px;max-height:88vh;}}
+  .recipe-modal.open .recipe-sheet{transform:translateY(0);}
+  .recipe-grab{
+    width:44px;height:4px;border-radius:99px;background:var(--ink4);
+    margin:10px auto 0;flex-shrink:0;
+  }
+  @media (min-width:768px){.recipe-grab{display:none;}}
+  .recipe-head{
+    padding:18px 22px 16px;border-bottom:1px solid var(--line);
+    display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-shrink:0;
+    background:var(--grad-paper);
+  }
+  .recipe-head .meta{flex:1;min-width:0;}
+  .recipe-head .slot-badge{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:1.5px;text-transform:uppercase;color:var(--forest-700);
+    background:var(--forest-50);border:1px solid var(--forest-100);
+    padding:4px 11px;border-radius:99px;margin-bottom:10px;
+  }
+  .recipe-head h3{
+    font-family:'Instrument Serif',serif;font-weight:400;
+    font-size:clamp(22px,4vw,30px);line-height:1.15;color:var(--forest-900);letter-spacing:-.01em;
+    margin-bottom:8px;
+  }
+  .recipe-head .tags{display:flex;flex-wrap:wrap;gap:5px;}
+  .recipe-close{
+    width:38px;height:38px;border-radius:50%;
+    border:1px solid var(--line);background:var(--paper);
+    cursor:pointer;font-size:22px;line-height:1;color:var(--ink2);
+    flex-shrink:0;display:grid;place-items:center;
+    transition:all .15s var(--ease);
+  }
+  .recipe-close:hover{background:var(--canvas);color:var(--ink);}
+  .recipe-body{
+    padding:22px;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;
+  }
+  .recipe-section-title{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    letter-spacing:2px;text-transform:uppercase;color:var(--clay-500);
+    margin:18px 0 10px;display:flex;align-items:center;gap:10px;
+  }
+  .recipe-section-title:first-child{margin-top:0;}
+  .recipe-section-title::before{
+    content:"";display:block;width:18px;height:1.5px;background:var(--clay-500);
+  }
+  .recipe-ingredients{
+    list-style:none;display:flex;flex-direction:column;gap:7px;
+    background:var(--canvas);border:1px solid var(--line);
+    padding:14px 16px;border-radius:var(--radius);
+  }
+  .recipe-ingredients li{
+    font-size:14.5px;color:var(--ink);padding-left:18px;position:relative;line-height:1.5;
+  }
+  .recipe-ingredients li::before{
+    content:"";position:absolute;left:0;top:9px;
+    width:6px;height:6px;border-radius:50%;background:var(--forest-500);
+  }
+  .recipe-ingredients li strong{font-weight:600;color:var(--ink);}
+  .recipe-steps{
+    list-style:none;counter-reset:step;display:flex;flex-direction:column;gap:12px;
+  }
+  .recipe-steps li{
+    counter-increment:step;font-size:14.5px;color:var(--ink2);line-height:1.55;
+    padding:12px 14px 12px 50px;background:var(--paper);
+    border:1px solid var(--line);border-radius:var(--radius-sm);position:relative;
+  }
+  .recipe-steps li::before{
+    content:counter(step);
+    position:absolute;left:14px;top:11px;
+    width:26px;height:26px;border-radius:50%;
+    background:var(--forest-900);color:var(--sand-100);
+    display:grid;place-items:center;
+    font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;
+  }
+  .recipe-tip{
+    background:var(--forest-50);border-left:3px solid var(--forest-500);
+    padding:12px 14px;border-radius:var(--radius-sm);
+    font-size:13.5px;color:var(--forest-700);line-height:1.55;
+  }
+  .recipe-tip b{font-weight:600;}
+  .recipe-macros{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--forest-700);border-radius:var(--radius);overflow:hidden;
+    margin-top:6px;
+  }
+  .recipe-macros .m{
+    background:var(--forest-900);color:var(--sand-100);
+    padding:13px 8px;text-align:center;
+  }
+  .recipe-macros .m .k{
+    font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;opacity:.65;display:block;
+  }
+  .recipe-macros .m .v{
+    font-family:'Instrument Serif',serif;font-size:22px;line-height:1.1;margin-top:3px;display:block;
+  }
+  .recipe-meta-row{
+    display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;font-size:12.5px;color:var(--ink2);
+  }
+  .recipe-meta-row .pair{display:inline-flex;align-items:center;gap:6px;}
+  .recipe-meta-row .pair i{font-style:normal;color:var(--clay-500);}
 
   /* utility */
   .center{text-align:center;}
@@ -1514,6 +1646,22 @@
   </div>
 </footer>
 
+<!-- Recipe modal -->
+<div class="recipe-modal" id="recipeModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="recipe-sheet" role="document">
+    <div class="recipe-grab"></div>
+    <header class="recipe-head">
+      <div class="meta">
+        <span class="slot-badge" id="rmSlot">Pasto</span>
+        <h3 id="rmTitle">Titolo ricetta</h3>
+        <div class="tags" id="rmTags"></div>
+      </div>
+      <button class="recipe-close" id="rmClose" aria-label="Chiudi ricetta">×</button>
+    </header>
+    <div class="recipe-body" id="rmBody"></div>
+  </div>
+</div>
+
 <button class="day-fab" id="dayFab" aria-label="Cambia giorno">
   <span id="dayFabLabel">Lun</span> ↑
 </button>
@@ -2035,6 +2183,514 @@ const options = {
   ],
 };
 
+/* ===== Procedimenti per ogni ricetta (chiave = "slot:index") ===== */
+const recipePrep = {
+  /* --- Colazione --- */
+  'colazione:0': { time:'10 min', diff:'Facile',
+    steps:[
+      "Scalda 250 ml di bevanda di mandorla in un pentolino a fuoco medio.",
+      "Versa 60 g di fiocchi d'avena e 1 cucchiaino di cannella, mescola e cuoci 5–6 min a fuoco basso fino a cremosità.",
+      "Spegni, aggiungi la scorza grattugiata di mezzo limone.",
+      "Trasferisci in ciotola, completa con 120 g di mirtilli e 15 g di mandorle pelate."
+    ] },
+  'colazione:1': { time:'12 min', diff:'Facile',
+    steps:[
+      "In una ciotola frulla 40 g di farina d'avena, 30 g di whey vaniglia, 10 g di cacao, 1 uovo + 2 albumi e la banana schiacciata.",
+      "Lascia riposare 2 min: il composto deve essere cremoso ma non liquido.",
+      "Scalda una padella antiaderente; versa porzioni da ~3 cucchiai per pancake.",
+      "Cuoci 90 sec per lato a fuoco medio-basso; impila e servi tiepidi."
+    ] },
+  'colazione:2': { time:'10 min', diff:'Facile',
+    steps:[
+      "Tosta la fetta di pane di segale.",
+      "Schiaccia 60 g di avocado con sale, pepe e un filo di EVO; spalma sul pane.",
+      "Sbatti 3 uova in ciotola con un pizzico di sale.",
+      "In padella antiaderente versa le uova e mescola con spatola a fuoco basso 1–2 min fino a cremosità.",
+      "Servi con pomodoro a fette e prezzemolo tritato."
+    ] },
+  'colazione:3': { time:'5 min', diff:'Facilissima',
+    steps:[
+      "Versa 200 g di skyr in una ciotola.",
+      "Aggiungi 40 g di granola, 100 g di frutti rossi, 10 g di semi di chia.",
+      "Se vuoi, filo di miele grezzo da 5 g e servi subito."
+    ] },
+  'colazione:4': { time:'8 min', diff:'Facile',
+    steps:[
+      "Tosta le fette di pane integrale di farro.",
+      "Lavora 120 g di ricotta delattosata con pizzico di sale, pepe e foglie di timo.",
+      "Spalma la ricotta sul pane; disponi i fichi tagliati in spicchi.",
+      "Cospargi con 10 g di noci tritate grossolanamente."
+    ] },
+  'colazione:5': { time:'35 min', diff:'Media',
+    steps:[
+      "Cuoci 150 g di patata dolce a cubetti in forno a 200°C per 25 min, oppure al vapore 15 min.",
+      "Salta 80 g di spinaci baby in padella con 5 ml di EVO, 1 min.",
+      "Sbatti 1 uovo + 4 albumi con sale, pepe e Parmigiano grattugiato.",
+      "Versa il composto sopra spinaci e patata in padella; cuoci a fuoco basso 6–7 min con coperchio."
+    ] },
+  'colazione:6': { time:'5 min', diff:'Facilissima',
+    steps:[
+      "Nel bicchiere del frullatore: whey, mango congelato, 100 ml latte di cocco light, fiocchi d'avena, semi di lino.",
+      "Frulla 60 sec a velocità massima fino a consistenza gelato.",
+      "Versa in bowl, completa con cocco rapè e semi di lino."
+    ] },
+  'colazione:7': { time:'5 min', diff:'Facilissima',
+    steps:[
+      "Versa 200 g di yogurt greco delattosato in una ciotola.",
+      "Disponi sopra 2 kiwi gold a rondelle, 20 g di mix mandorle/noci e 15 g di fiocchi di avena tostati.",
+      "Se vuoi un tocco dolce, 1 cucchiaino di sciroppo d'acero."
+    ] },
+  'colazione:8': { time:'5 min sera + 1 min mattino', diff:'Facilissima',
+    steps:[
+      "La sera: in un barattolo unisci 55 g di avena, 200 ml di bevanda di mandorla, 20 g di burro di arachidi, 10 g di cacao, 10 g di chia e un pizzico di cannella.",
+      "Chiudi e lascia in frigo 8 ore minimo.",
+      "Al mattino mescola bene e mangia direttamente dal barattolo. Si conserva 48 h in frigo."
+    ] },
+  'colazione:9': { time:'18 min', diff:'Facile',
+    steps:[
+      "Sciacqua 60 g di quinoa sotto acqua fredda per togliere le saponine.",
+      "Cuoci la quinoa in 180 ml di bevanda di mandorla calda con cannella, 12 min a fuoco basso.",
+      "Aggiungi a metà cottura la mela a cubetti.",
+      "A fine cottura aggiungi 15 g di noci tritate."
+    ] },
+  'colazione:10': { time:'5 min', diff:'Facilissima',
+    steps:[
+      "Tosta il bagel di segale; spalma 30 g di hummus su entrambe le metà.",
+      "Disponi 70 g di salmone affumicato e 40 g di avocado a fette.",
+      "Completa con capperi, cipolla rossa a velo e ciuffi di aneto."
+    ] },
+  'colazione:11': { time:'25 min', diff:'Media',
+    steps:[
+      "Salta in padella con poco EVO 120 g di patata dolce a cubetti piccoli per 8–10 min finché dorata.",
+      "Sbatti 2 uova + 3 albumi con pepe.",
+      "Aggiungi le uova alla padella, mescola e lascia rapprendere come frittata.",
+      "Servi con prosciutto crudo sgrassato e rucola a parte."
+    ] },
+  'colazione:12': { time:'15 min', diff:'Media',
+    steps:[
+      "Frulla 50 g di farina di grano saraceno con 1 uovo e 150 ml di acqua fino a pastella liscia.",
+      "Riposa 5 min; cuoci 2 crêpe sottili in padella antiaderente, 60 sec per lato.",
+      "Spalma ogni crêpe con 50 g di ricotta delattosata e 10 g di marmellata 100% frutta.",
+      "Arrotola, completa con mandorle a scaglie."
+    ] },
+  'colazione:13': { time:'5 min', diff:'Facilissima',
+    steps:[
+      "Frulla whey, 200 g di papaya a cubetti, 150 ml di bevanda di cocco fino a consistenza yogurt.",
+      "Versa in bowl, cospargi semi di canapa, cocco rapè e foglie di menta."
+    ] },
+  'colazione:14': { time:'12 min', diff:'Facile',
+    steps:[
+      "Cuoci 50 g di fiocchi d'avena in 200 ml di brodo vegetale leggero, 5–6 min.",
+      "In padella saltata 100 g di spinaci con noce moscata e EVO.",
+      "Porta acqua a bollore con goccio di aceto, fai l'uovo in camicia (3 min).",
+      "Assembla: avena cremosa, spinaci, uovo in camicia, Parmigiano grattugiato sopra."
+    ] },
+
+  /* --- Spuntino mattina --- */
+  'spuntino1:0': { time:'1 min', diff:'Istantanea',
+    steps:[
+      "Apri le 2 noci del Brasile e mangia con la mela ben lavata. Selenio bioassorbibile + fibra solubile."
+    ] },
+  'spuntino1:1': { time:'2 min', diff:'Istantanea',
+    steps:[
+      "Versa lo skyr in una piccola ciotola.",
+      "Completa con 100 g di frutti di bosco e 5 g di semi di chia."
+    ] },
+  'spuntino1:2': { time:'3 min', diff:'Facilissima',
+    steps:[
+      "Tosta il pane di segale.",
+      "Spalma 50 g di hummus; completa con rondelle di cetriolo e paprika dolce."
+    ] },
+  'spuntino1:3': { time:'2 min', diff:'Istantanea',
+    steps:[
+      "Disponi le fette di bresaola a rosetta su un piatto.",
+      "Spruzzo di limone, pepe nero, servi con grissini di farro."
+    ] },
+  'spuntino1:4': { time:'3 min', diff:'Facilissima',
+    steps:[
+      "Frulla banana, bevanda di mandorla, burro di mandorle, cacao e ghiaccio fino a cremosità.",
+      "Versa in bicchiere e bevi subito."
+    ] },
+  'spuntino1:5': { time:'2 min', diff:'Istantanea',
+    steps:[
+      "Apri il tonno e sgocciolalo bene.",
+      "Sbriciolalo su gallette di riso, completa con limone, prezzemolo e un filo di EVO."
+    ] },
+  'spuntino1:6': { time:'1 min', diff:'Istantanea',
+    steps:[
+      "Lava i kiwi, taglia a metà e mangia con cucchiaino. Accompagna con le mandorle."
+    ] },
+  'spuntino1:7': { time:'10 min', diff:'Facilissima',
+    steps:[
+      "Sguscia l'uovo già sodo (prepara in batch — 10 min in acqua bollente).",
+      "Disponi su gallette con pomodorini a metà, sale, origano e EVO."
+    ] },
+  'spuntino1:8': { time:'3 min', diff:'Facilissima',
+    steps:[
+      "Affetta la pera matura.",
+      "Avvolgi spicchi di pera con prosciutto crudo sgrassato; completa con noci tritate."
+    ] },
+  'spuntino1:9': { time:'6 min', diff:'Facilissima',
+    steps:[
+      "Porta a bollore acqua leggermente salata.",
+      "Versa gli edamame surgelati, cuoci 5 min, scola.",
+      "Spremi lime sopra; ricorda: ≥ 4 h di distanza da Eutirox."
+    ] },
+  'spuntino1:10': { time:'3 min', diff:'Istantanea',
+    steps:[
+      "Spalma la ricotta sui crackers di semi.",
+      "Cospargi erba cipollina; servi con cetriolo a bastoncini."
+    ] },
+  'spuntino1:11': { time:'1 min', diff:'Istantanea',
+    steps:[
+      "Sbuccia la banana e spalma sopra il burro di mandorle a cucchiaiate."
+    ] },
+
+  /* --- Pranzo --- */
+  'pranzo:0': { time:'35 min', diff:'Facile',
+    steps:[
+      "Cuoci 80 g di riso basmati integrale in acqua salata, 22 min, scola e lascia riposare 5 min.",
+      "Marina il pollo con limone, rosmarino, aglio schiacciato, sale, pepe e 5 ml EVO per 10 min.",
+      "Cuoci il pollo su griglia o piastra rovente 4 min per lato fino a 73°C interno.",
+      "Griglia le zucchine a fette per 2 min per lato.",
+      "Componi il piatto: riso, pollo a fette, zucchine, filo di EVO."
+    ] },
+  'pranzo:1': { time:'25 min', diff:'Facile',
+    steps:[
+      "Preriscalda il forno a 190°C.",
+      "Cuoci le patate dolci a cubetti 22 min con paprika e EVO.",
+      "Disponi il salmone su carta forno, condisci con limone, aneto, sale, pepe e poco EVO.",
+      "Cuoci salmone in cartoccio 12–14 min secondo lo spessore.",
+      "Cuoci i broccoli al vapore 6 min: croccanti, verdi vivi."
+    ] },
+  'pranzo:2': { time:'30 min', diff:'Media',
+    steps:[
+      "Sciacqua e cuoci 80 g di quinoa in 160 ml di acqua salata per 12 min; lascia riposare 5 min coperta.",
+      "Arrostisci peperoni e melanzane a cubetti in forno 200°C per 20 min con EVO e origano.",
+      "Componi la bowl: quinoa alla base, ceci, verdure, avocado, semi di zucca.",
+      "Condisci con limone, EVO, sale."
+    ] },
+  'pranzo:3': { time:'25 min', diff:'Media',
+    steps:[
+      "Cuoci 70 g di farro in 220 ml di acqua salata per 18 min; scola.",
+      "Scalda la piastra rovente, ungi appena la carne con poco EVO.",
+      "Cuoci la tagliata 2 min per lato per restare rosata; lascia riposare 3 min e taglia a fette.",
+      "Componi: farro tiepido, rucola, tagliata, Parmigiano a scaglie, EVO e balsamico."
+    ] },
+  'pranzo:4': { time:'18 min', diff:'Facile',
+    steps:[
+      "Porta l'acqua a bollore per la pasta integrale.",
+      "Salta i gamberi in padella con aglio e poco EVO, 3 min totali.",
+      "Cuoci la pasta al dente e scolala tenendo da parte 50 ml di acqua.",
+      "Manteca pasta, pesto di rucola, pomodorini e gamberi con l'acqua di cottura per 1 min."
+    ] },
+  'pranzo:5': { time:'40 min', diff:'Media',
+    steps:[
+      "Cuoci 80 g di lenticchie già ammollate per 25 min in acqua non salata; sala a fine cottura.",
+      "Lessa il cavolo nero 2 min in acqua bollente, scola e ripassa in padella con aglio e peperoncino 3 min.",
+      "Cuoci le fettine di vitello in padella calda, 1 min per lato.",
+      "Servi vitello su lenticchie e cavolo nero, filo di EVO crudo."
+    ] },
+  'pranzo:6': { time:'25 min', diff:'Facile',
+    steps:[
+      "Cuoci il cous cous integrale in 70 ml di acqua bollente salata: copri, lascia idratare 5 min, sgrana con forchetta.",
+      "Grilla le melanzane a fette su piastra 2 min per lato.",
+      "Scalda 30 sec per lato il tonno fresco in padella ben calda: sigillato fuori, rosato dentro.",
+      "Componi piatto: cous cous, melanzane, tonno a fette, limone, menta."
+    ] },
+  'pranzo:7': { time:'30 min · meal prep', diff:'Facilissima',
+    steps:[
+      "Lessa il farro 22 min, raffredda sotto acqua fredda.",
+      "Cuoci i fagiolini al vapore 7 min, mantieni croccanti.",
+      "In una ciotola unisci farro, tonno sgocciolato, fagiolini, olive a metà.",
+      "Condisci con EVO, origano, sale e pepe. Conserva fino a 48 h in frigo."
+    ] },
+  'pranzo:8': { time:'35 min', diff:'Facile',
+    steps:[
+      "Cuoci 75 g di riso venere in abbondante acqua salata 30 min, scola.",
+      "Cuoci il tacchino in padella o forno con scorza di limone e poco EVO fino a 73°C interni.",
+      "Lessa o cuoci al vapore gli asparagi 5–6 min, mantenendoli croccanti.",
+      "Componi: riso venere, tacchino a fette, asparagi, filo di EVO crudo."
+    ] },
+  'pranzo:9': { time:'25 min', diff:'Facile',
+    steps:[
+      "Cuoci 80 g di riso basmati in 160 ml di acqua salata per 12 min, riposa 5 min.",
+      "In padella scalda 5 g di EVO con zenzero, curcuma e curry; rosola spinaci 2 min.",
+      "Aggiungi ceci lessati e 100 ml di latte di cocco light; cuoci 6 min a fuoco medio.",
+      "Servi sopra il riso, decora con coriandolo o prezzemolo."
+    ] },
+  'pranzo:10': { time:'30 min', diff:'Facile',
+    steps:[
+      "Idrata 75 g di couscous in 80 ml di acqua bollente salata, 5 min, sgrana.",
+      "Grilla le melanzane a fette su piastra 2 min per lato.",
+      "Unisci couscous, ceci, melanzane, olive e prezzemolo.",
+      "Condisci con limone, EVO, sale, pepe."
+    ] },
+  'pranzo:11': { time:'25 min', diff:'Facile',
+    steps:[
+      "Schiaccia i legumi con forchetta, lega con 1 uovo, pangrattato, spezie; forma 2 burger.",
+      "Cuoci i burger in padella antiaderente 4 min per lato.",
+      "Cuoci le patate al forno a 200°C per 22 min con buccia.",
+      "Servi con insalata mista condita con EVO, semi di sesamo, limone."
+    ] },
+  'pranzo:12': { time:'25 min', diff:'Media',
+    steps:[
+      "Cuoci 70 g di farro 20 min in acqua salata, scola.",
+      "Tosta brevemente i semi di sesamo, impana il pesce spada premendoli sulla superficie.",
+      "Cuoci pesce spada in padella ben calda 2–3 min per lato.",
+      "Salta spinaci in padella 2 min con EVO e aglio.",
+      "Componi: farro, spinaci, pesce spada, gocce di limone."
+    ] },
+  'pranzo:13': { time:'30 min', diff:'Media',
+    steps:[
+      "Cuoci 80 g di riso integrale in acqua salata 35 min, scola.",
+      "Cubetta il pollo, rosolalo in padella con EVO 3 min; aggiungi curry, curcuma, zenzero.",
+      "Versa 80 ml di latte di cocco, cuoci 5 min fino a sughetto cremoso.",
+      "Arrostisci cavolfiore in forno a 200°C per 22 min.",
+      "Servi pollo su riso con cavolfiore al lato."
+    ] },
+  'pranzo:14': { time:'30 min', diff:'Facile',
+    steps:[
+      "Cuoci 80 g di lenticchie già ammollate per 22 min; raffredda.",
+      "Lessa le uova 9 min; raffredda in acqua fredda e sguscia.",
+      "Mescola lenticchie, tonno sgocciolato, pomodorini a metà, cipolla a velo.",
+      "Disponi nei piatti, completa con uova in spicchi e condimento EVO-aceto."
+    ] },
+  'pranzo:15': { time:'18 min', diff:'Facile',
+    steps:[
+      "Cuoci 150 g di sgombro in padella con passata di pomodoro, capperi e origano, 8 min.",
+      "Tosta il pane integrale.",
+      "Componi insalata: misticanza, ravanelli a fette, EVO, limone.",
+      "Servi sgombro al pomodoro su pane tostato, insalata a parte."
+    ] },
+
+  /* --- Pre-workout / merenda --- */
+  'pre:0': { time:'3 min', diff:'Istantanea',
+    steps:[
+      "Versa lo yogurt greco in una ciotola.",
+      "Aggiungi miele a filo e noci tritate. Mangia 60–90 min prima del workout."
+    ] },
+  'pre:1': { time:'3 min', diff:'Facilissima',
+    steps:[
+      "Tosta il pane di segale.",
+      "Spalma burro di mandorle, completa con fette di banana."
+    ] },
+  'pre:2': { time:'2 min', diff:'Istantanea',
+    steps:[
+      "Sciogli 30 g di whey in 200 ml di acqua o bevanda di mandorla in shaker.",
+      "Mangia il frutto a parte. Assumere 30–45 min prima dell'allenamento."
+    ] },
+  'pre:3': { time:'5 min', diff:'Facilissima',
+    steps:[
+      "Disponi le gallette di mais e l'hummus in un piatto.",
+      "Servi con carote a julienne come dip."
+    ] },
+  'pre:4': { time:'3 min', diff:'Istantanea',
+    steps:[
+      "Arrotola le fette di bresaola attorno ai bastoncini di grissini.",
+      "Completa con scaglie di Parmigiano stagionato."
+    ] },
+  'pre:5': { time:'2 min', diff:'Istantanea',
+    steps:[
+      "In una ciotola versa il riso soffiato.",
+      "Sciogli 25 g di whey in 150 ml di acqua; versa sul riso soffiato come fosse latte.",
+      "Aggiungi i frutti rossi."
+    ] },
+  'pre:6': { time:'5 min', diff:'Istantanea',
+    steps:[
+      "Incidi i datteri sul lato lungo, denocciolali e farciscili con 3 mandorle ciascuno.",
+      "Servi con caffè americano amaro (lontano da Eutirox)."
+    ] },
+  'pre:7': { time:'3 min', diff:'Facilissima',
+    steps:[
+      "Cuoci pop corn al naturale in pentola coperta con poco EVO (~3 min).",
+      "Versa in ciotola, sala leggermente.",
+      "Bevi a parte uno shake di whey in 250 ml di acqua."
+    ] },
+  'pre:8': { time:'5 min', diff:'Facilissima',
+    steps:[
+      "Scalda brevemente la piadina in padella.",
+      "Disponi lattuga, tacchino a fette, avocado a fette, pomodoro.",
+      "Condisci con EVO, sale, pepe; arrotola stretto e taglia a metà."
+    ] },
+  'pre:9': { time:'10 min', diff:'Facile',
+    steps:[
+      "Frulla 30 g di avena, 20 g di whey, 2 albumi, 1 banana e cacao fino a pastella.",
+      "Cuoci 3 pancake piccoli in padella antiaderente 90 sec per lato."
+    ] },
+  'pre:10': { time:'2 min', diff:'Istantanea',
+    steps:[
+      "Affetta il frutto.",
+      "Servi con cubetti di Parmigiano e noci. Combinazione dolce-salato-grasso saziante."
+    ] },
+  'pre:11': { time:'3 min', diff:'Istantanea',
+    steps:[
+      "Frulla kefir d'acqua, whey, frutti rossi congelati e semi di canapa.",
+      "Versa in un bicchiere alto e bevi entro 10 min."
+    ] },
+
+  /* --- Cena --- */
+  'cena:0': { time:'35 min', diff:'Facile',
+    steps:[
+      "Preriscalda forno a 190°C.",
+      "Taglia le patate a cubetti, condisci con EVO, sale, rosmarino; inforna 25 min.",
+      "Disponi il branzino su carta forno con olive, capperi, limone; condisci con poco EVO.",
+      "Cuoci il branzino 14 min secondo lo spessore.",
+      "Componi piatto con insalata mista a parte, EVO crudo."
+    ] },
+  'cena:1': { time:'25 min', diff:'Facile',
+    steps:[
+      "Marina il pollo con paprika, cumino, EVO, sale per 10 min.",
+      "Grilla zucchine, peperoni, melanzane su piastra 2 min per lato.",
+      "Cuoci il pollo in padella o griglia 4 min per lato fino a 73°C interni.",
+      "Servi con verdure e pane integrale di farro tostato."
+    ] },
+  'cena:2': { time:'30 min', diff:'Facile',
+    steps:[
+      "Cuoci patata dolce in forno 22 min a 200°C oppure al vapore 15 min.",
+      "Lavora il tacchino con sale, pepe, origano, sesamo; forma 1 hamburger.",
+      "Cuoci in padella 4 min per lato.",
+      "Componi piatto con pomodoro, cetriolo, cipolla a rondelle e EVO."
+    ] },
+  'cena:3': { time:'25 min', diff:'Facile',
+    steps:[
+      "Cuoci la quinoa 12 min in 120 ml di acqua salata; riposa 5 min.",
+      "Salta il cavolo nero in padella con aglio, peperoncino e EVO per 4 min.",
+      "Cuoci lo sgombro al cartoccio con limone, zenzero, sale, 14 min a 190°C.",
+      "Componi: quinoa, cavolo nero, sgombro intero o filettato."
+    ] },
+  'cena:4': { time:'12 min', diff:'Facilissima',
+    steps:[
+      "Sbatti uovo + albumi con sale, pepe e noce moscata.",
+      "Affetta i funghi e saltali in padella con EVO 4 min fino a doratura.",
+      "Aggiungi spinaci, fai appassire 2 min.",
+      "Versa le uova, cuoci come frittata 5 min a fuoco basso con coperchio.",
+      "Servi con pane integrale tostato."
+    ] },
+  'cena:5': { time:'25 min', diff:'Media',
+    steps:[
+      "Marina il tofu in agave + tamari + zenzero grattugiato per 15 min.",
+      "Cuoci 60 g di riso basmati integrale in acqua salata 22 min.",
+      "Cuoci il tofu in padella con olio di sesamo, 4 min per lato fino a doratura.",
+      "Salta il bok choy in padella con poco EVO, 3 min.",
+      "Componi piatto. Ricorda: ≥ 4 h da Eutirox."
+    ] },
+  'cena:6': { time:'15 min', diff:'Facilissima',
+    steps:[
+      "Scalda i ceci in padella con aglio e prezzemolo per 3 min.",
+      "Ripassa la cicoria già lessata in padella con peperoncino e EVO, 4 min.",
+      "Scalda il polpo in piastra rovente 90 sec per lato per croccantezza.",
+      "Componi: cicoria, ceci, polpo, EVO crudo, prezzemolo."
+    ] },
+  'cena:7': { time:'30 min', diff:'Media',
+    steps:[
+      "Lessa il farro 22 min in acqua salata; scola.",
+      "Frulla tonno + maionese senza lattosio fino a salsa cremosa.",
+      "Cuoci le fettine di vitello arrotolate in forno 12 min a 180°C; raffredda e affetta.",
+      "Componi: farro tiepido con pomodorini e rucola, vitello a fette, nappa con salsa tonnata."
+    ] },
+  'cena:8': { time:'30 min', diff:'Facile',
+    steps:[
+      "Cuoci 60 g di riso venere 30 min in acqua salata.",
+      "Arrostisci cavolfiore a cimette in forno a 200°C per 22 min con curcuma e paprika.",
+      "Cuoci salmone al cartoccio o padella, 4 min per lato.",
+      "Componi piatto, EVO crudo."
+    ] },
+  'cena:9': { time:'30 min', diff:'Facile',
+    steps:[
+      "Sciacqua le lenticchie rosse: non serve ammollo.",
+      "In pentola: scalda EVO, aggiungi cumino e paprika, tosta 30 sec.",
+      "Aggiungi scorzonera e carote a cubetti, rosola 2 min.",
+      "Versa lenticchie e 500 ml di brodo; cuoci 18 min a fuoco basso.",
+      "Servi con crostini di pane integrale tostato."
+    ] },
+  'cena:10': { time:'25 min', diff:'Facile',
+    steps:[
+      "Pulisci la trota, condisci con sale, limone, timo.",
+      "Cuoci in forno 18 min a 190°C.",
+      "Grilla i finocchi a fette su piastra 3 min per lato.",
+      "Tosta il pane integrale; componi piatto con EVO crudo."
+    ] },
+  'cena:11': { time:'25 min', diff:'Media',
+    steps:[
+      "Crea spaghetti di zucchine con spiralizzatore o pelapatate.",
+      "Soffriggi aglio in EVO, aggiungi macinato di tacchino, rosola 4 min sbriciolandolo.",
+      "Versa passata di pomodoro, basilico, sale; cuoci 10 min.",
+      "Salta le zucchine spaghetti 90 sec in padella ben calda, condisci col ragù.",
+      "Servi con pane integrale."
+    ] },
+  'cena:12': { time:'15 min (con polpo già lessato)', diff:'Facilissima',
+    steps:[
+      "Lessa le patate intere con buccia in acqua salata 20 min; scola, sbuccia e taglia a cubetti tiepidi.",
+      "Taglia il polpo già lessato a pezzetti.",
+      "In ciotola unisci patate, polpo, olive, sedano a fette sottili e prezzemolo.",
+      "Condisci con EVO, limone, sale, pepe."
+    ] },
+  'cena:13': { time:'30 min', diff:'Facile',
+    steps:[
+      "Preriscalda forno a 200°C.",
+      "Condisci il filetto di maiale con rosmarino, aglio, sale, pepe e EVO.",
+      "Inforna 18–20 min, rigirando a metà. Lascia riposare 5 min e affetta.",
+      "Arrostisci carote, finocchi, peperoni in forno 22 min nello stesso vassoio.",
+      "Servi con pane di farro."
+    ] },
+  'cena:14': { time:'25 min', diff:'Facile',
+    steps:[
+      "Cuoci le patate al vapore 18 min finché morbide.",
+      "Lessa o cuoci al vapore gli asparagi 5–6 min.",
+      "Infarina leggermente la sogliola, cuocila in padella con EVO 2 min per lato.",
+      "Spruzza limone e prezzemolo; servi con patate e asparagi."
+    ] },
+  'cena:15': { time:'25 min', diff:'Media',
+    steps:[
+      "Trita il salmone crudo a coltello, mescola con 1 albume, aneto, sale, pepe.",
+      "Forma 2 burger e cuoci in padella antiaderente 3 min per lato.",
+      "Cuoci la quinoa in 120 ml di acqua salata 12 min.",
+      "Servi burger su quinoa con insalata e ravanelli, EVO e limone."
+    ] },
+
+  /* --- Bedtime / post --- */
+  'post:0': { time:'4 min', diff:'Istantanea',
+    steps:[
+      "Prepara la tisana in 250 ml di acqua a 90°C, infusione 5 min.",
+      "Servi con i due quadrati di cioccolato fondente 85%."
+    ] },
+  'post:1': { time:'1 min', diff:'Istantanea',
+    steps:[
+      "Versa lo skyr in una ciotolina e cospargi con cannella di Ceylon."
+    ] },
+  'post:2': { time:'2 min', diff:'Istantanea',
+    steps:[
+      "Disponi la ricotta in una ciotolina.",
+      "Trita finemente le noci e cospargile sopra."
+    ] },
+  'post:3': { time:'1 min', diff:'Istantanea',
+    steps:[
+      "Sciogli le caseine in 200 ml di acqua o bevanda di mandorla in shaker.",
+      "Aggiungi cacao amaro per il sapore e bevi 30 min prima di dormire."
+    ] },
+  'post:4': { time:'5 min', diff:'Istantanea',
+    steps:[
+      "Prepara l'infuso con fettine di zenzero fresco e succo di limone, infusione 5 min.",
+      "Mangia il kiwi a parte con un cucchiaino."
+    ] },
+  'post:5': { time:'0 min', diff:'-',
+    steps:[
+      "Se la cena è stata completa e hai centrato il target proteico, salta lo spuntino.",
+      "Bevi una tisana rilassante e prepara l'ambiente per il sonno: luci basse, schermi off 30 min prima."
+    ] },
+  'post:6': { time:'3 min', diff:'Istantanea',
+    steps:[
+      "Tosta brevemente la fetta di pane.",
+      "Schiaccia l'avocado con sale rosa, spalma e cospargi semi di sesamo."
+    ] },
+  'post:7': { time:'5 min', diff:'Istantanea',
+    steps:[
+      "Scalda il brodo di ossa fino a fumante.",
+      "Aggiungi sale rosa, pepe nero, prezzemolo tritato; bevi a piccoli sorsi."
+    ] },
+};
+
 /* ===== Days with default option indices per slot ===== */
 const days = [
   { id:'lun', label:'Lunedì',   type:'TRAINING', defaults:{colazione:0, spuntino1:0, pranzo:0,  pre:0,  cena:0,  post:0} },
@@ -2223,14 +2879,18 @@ const tagMeta = {
 
 const allMeals = [];
 Object.keys(options).forEach(slotKey=>{
-  options[slotKey].forEach(opt=>{
+  options[slotKey].forEach((opt, idx)=>{
+    const key = slotKey+':'+idx;
     allMeals.push({
       slot: slotKey,
+      idx: idx,
+      key: key,
       title: opt.title,
       list: opt.list,
       tags: opt.tags || [],
       macros: opt.macros,
-      note: opt.note || ''
+      note: opt.note || '',
+      prep: recipePrep[key] || null
     });
   });
 });
@@ -2304,7 +2964,7 @@ function renderMealsGrid(){
     const tags = m.tags.map(t=>`<span class="opt-tag ${t}">${t}</span>`).join('');
     const ingShort = m.list.slice(0,3).map(stripHtml).join(' · ') + (m.list.length>3?` <b>+${m.list.length-3}</b>`:'');
     return `
-      <article class="meal-card">
+      <article class="meal-card" data-key="${m.key}" role="button" tabindex="0" aria-label="Apri ricetta ${m.title.replace(/"/g,'&quot;')}">
         <div class="head">
           <span class="slot">${meta.label}</span>
           <span class="icn">${meta.icon}</span>
@@ -2319,9 +2979,74 @@ function renderMealsGrid(){
           <span class="chip">C ${m.macros.c}</span>
           <span class="chip">G ${m.macros.f}</span>
         </div>
+        <span class="cta-open">↗ apri ricetta</span>
       </article>`;
   }).join('');
+
+  grid.querySelectorAll('.meal-card').forEach(card=>{
+    const open = ()=> openMealModal(card.dataset.key);
+    card.addEventListener('click', open);
+    card.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); }});
+  });
 }
+
+/* ===== Recipe modal ===== */
+const recipeModal = document.getElementById('recipeModal');
+function openMealModal(key){
+  const m = allMeals.find(x=>x.key===key);
+  if(!m) return;
+  const meta = categoryMeta[m.slot];
+
+  document.getElementById('rmSlot').textContent = meta.icon + ' ' + meta.label;
+  document.getElementById('rmTitle').textContent = m.title;
+  document.getElementById('rmTags').innerHTML = m.tags.map(t=>`<span class="opt-tag ${t}">${t}</span>`).join('');
+
+  const prep = m.prep;
+  const stepsHtml = prep && prep.steps
+    ? `<ol class="recipe-steps">${prep.steps.map(s=>`<li>${s}</li>`).join('')}</ol>`
+    : `<p style="font-size:14px;color:var(--ink2);font-style:italic;">Procedimento semplice: combina gli ingredienti come da elenco. Tempo di preparazione &lt; 5 min.</p>`;
+
+  const metaRow = prep
+    ? `<div class="recipe-meta-row">
+         <span class="pair"><i>⏱</i> ${prep.time}</span>
+         <span class="pair"><i>📊</i> ${prep.diff}</span>
+         <span class="pair"><i>🍽</i> 1 persona</span>
+       </div>`
+    : `<div class="recipe-meta-row"><span class="pair"><i>🍽</i> 1 persona</span></div>`;
+
+  document.getElementById('rmBody').innerHTML = `
+    ${metaRow}
+    <div class="recipe-section-title">Ingredienti per 1 persona</div>
+    <ul class="recipe-ingredients">${m.list.map(li=>`<li>${li}</li>`).join('')}</ul>
+
+    <div class="recipe-section-title">Procedimento</div>
+    ${stepsHtml}
+
+    ${m.note?`<div class="recipe-section-title">Evidenza scientifica</div><div class="recipe-tip">${m.note}</div>`:''}
+
+    <div class="recipe-section-title">Macro del piatto</div>
+    <div class="recipe-macros">
+      <div class="m"><span class="k">Kcal</span><span class="v">${m.macros.kcal}</span></div>
+      <div class="m"><span class="k">Proteine</span><span class="v">${m.macros.p}<small style="font-size:11px;opacity:.7;">g</small></span></div>
+      <div class="m"><span class="k">Carbo</span><span class="v">${m.macros.c}<small style="font-size:11px;opacity:.7;">g</small></span></div>
+      <div class="m"><span class="k">Grassi</span><span class="v">${m.macros.f}<small style="font-size:11px;opacity:.7;">g</small></span></div>
+    </div>
+  `;
+
+  recipeModal.classList.add('open');
+  recipeModal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  document.getElementById('rmBody').scrollTop = 0;
+}
+
+function closeMealModal(){
+  recipeModal.classList.remove('open');
+  recipeModal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+document.getElementById('rmClose').addEventListener('click', closeMealModal);
+recipeModal.addEventListener('click', e=>{ if(e.target===recipeModal) closeMealModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && recipeModal.classList.contains('open')) closeMealModal(); });
 
 document.getElementById('mealSearch').addEventListener('input',(e)=>{
   filterState.search = e.target.value;
